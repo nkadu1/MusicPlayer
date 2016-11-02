@@ -2,13 +2,18 @@ package io.theorem.albums;
 
 import java.util.Properties;
 
+import com.google.inject.persist.jpa.JpaPersistModule;
+import com.hubspot.dropwizard.guice.GuiceBundle;
+
 import io.dropwizard.Application;
 import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
-import io.theorem.helloworld.health.TemplateHealthCheck;
-import io.theorem.helloworld.resources.HelloWorldResource;
+import io.theorem.albums.resources.AlbumsResource;
+import io.theorem.albums.util.StartHelper;
 
 public class MusicPlayerApplication extends Application<MusicPlayerConfiguration> {
+	private GuiceBundle<MusicPlayerConfiguration> guiceBundle;
+
 	public static void main(String[] args) throws Exception {
 		new MusicPlayerApplication().run(args);
 	}
@@ -21,29 +26,27 @@ public class MusicPlayerApplication extends Application<MusicPlayerConfiguration
 	@Override
 	public void initialize(Bootstrap<MusicPlayerConfiguration> bootstrap) {
 		MusicPlayerConfiguration configuration = StartHelper.createConfiguration(StartHelper.getConfigFilename());
-	        Properties jpaProperties = StartHelper.createPropertiesFromConfiguration(configuration);
+		Properties jpaProperties = StartHelper.createPropertiesFromConfiguration(configuration);
 
-	        JpaPersistModule jpaPersistModule = new JpaPersistModule(io.theorem.albums.util.JPA_UNIT);
-	        jpaPersistModule.properties(jpaProperties);
+		JpaPersistModule jpaPersistModule = new JpaPersistModule(StartHelper.JPA_UNIT);
+		jpaPersistModule.properties(jpaProperties);
 
-	        guiceBundle = GuiceBundle.<ToDoConfiguration>newBuilder()
-	                .addModule(new ToDoGuiceModule())
-	                .addModule(jpaPersistModule).enableAutoConfig("org.oregami")
-	                .setConfigClass(ToDoConfiguration.class).build();
+		guiceBundle = GuiceBundle.<MusicPlayerConfiguration> newBuilder().addModule(new ToDoGuiceModule())
+				.addModule(jpaPersistModule).enableAutoConfig("org.oregami")
+				.setConfigClass(MusicPlayerConfiguration.class).build();
 
-	        bootstrap.addBundle(guiceBundle);
+		bootstrap.addBundle(guiceBundle);
 
-	        initAuthKey();
 	}
 
 	@Override
 	public void run(MusicPlayerConfiguration configuration, Environment environment) {
-		final HelloWorldResource resource = new HelloWorldResource(configuration.getTemplate(),
-				configuration.getDefaultName());
-		final TemplateHealthCheck healthCheck = new TemplateHealthCheck(configuration.getTemplate());
-		environment.healthChecks().register("template", healthCheck);
+		/*
+		 * Not Implemented
+		 */
 
-		environment.jersey().register(resource);
+        StartHelper.init(StartHelper.getConfigFilename());
+		environment.jersey().register(guiceBundle.getInjector().getInstance(AlbumsResource.class));
 
 	}
 

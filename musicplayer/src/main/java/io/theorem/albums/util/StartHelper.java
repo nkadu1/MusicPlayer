@@ -1,23 +1,16 @@
 package io.theorem.albums.util;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
-
-import javax.validation.Validation;
-
-import org.apache.commons.lang3.builder.ToStringBuilder;
-import org.apache.commons.lang3.builder.ToStringStyle;
 
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 import com.google.inject.persist.PersistService;
 import com.google.inject.persist.jpa.JpaPersistModule;
 
-import io.dropwizard.configuration.ConfigurationFactory;
-import io.dropwizard.jackson.Jackson;
 import io.theorem.albums.MusicPlayerConfiguration;
+import io.theorem.albums.ToDoGuiceModule;
 
 public class StartHelper {
 
@@ -83,21 +76,14 @@ public class StartHelper {
     }
 
     public static MusicPlayerConfiguration createConfiguration(String configFilename) {
-        ConfigurationFactory<MusicPlayerConfiguration> factory =
-                new ConfigurationFactory<T>(
-                		MusicPlayerConfiguration.class,
-                        Validation.buildDefaultValidatorFactory().getValidator(),
-                        Jackson.newObjectMapper(),
-                        ""
-                );
-        MusicPlayerConfiguration configuration;
+//        ConfigurationFactory<MusicPlayerConfiguration> factory =
+//                new ConfigurationFactory(MusicPlayerConfiguration.class,Validation.buildDefaultValidatorFactory().getValidator(),Jackson.newObjectMapper(),"" );
+        MusicPlayerConfiguration configuration =null;
         try {
-            configuration = factory.build(new File(configFilename));
+        //    configuration = factory.build(new File(configFilename));
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
-        System.out.println(ToStringBuilder.reflectionToString(configuration, ToStringStyle.MULTI_LINE_STYLE));
-        System.out.println(ToStringBuilder.reflectionToString(configuration.getDatabaseConfiguration(), ToStringStyle.MULTI_LINE_STYLE));
         return configuration;
     }
 
