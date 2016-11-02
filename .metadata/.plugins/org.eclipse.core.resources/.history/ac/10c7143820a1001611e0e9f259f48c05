@@ -1,0 +1,40 @@
+package io.theorem.albums.service;
+
+import java.util.List;
+
+import com.google.inject.Inject;
+
+import io.theorem.albums.entity.Album;
+import io.theorem.albums.entity.Song;
+import io.theorem.albums.repository.AlbumRepository;
+import io.theorem.albums.repository.SongRepository;
+
+public class SongServiceImp implements SongService{
+
+	@Inject
+	private SongRepository songrepository;
+	@Inject
+	AlbumRepository albumrepository;
+	
+	public List<Song> findAllSongs(String albumId) {
+		Album album    =  albumrepository.findById(albumId);
+		return songrepository.findAllSongs(album);
+	}
+
+	public Song updateSong(Song song) {
+		return songrepository.updateSong(song, albumId);
+	}
+
+	public void delete(Song song) {
+		songrepository.delete(song);
+	}
+
+	public Song  createSong(Song song) {
+		return songrepository.createSong(song);
+	}
+
+	public Song findSongById(String songId) {
+		return songrepository.findSongById(songId);
+	}
+
+}

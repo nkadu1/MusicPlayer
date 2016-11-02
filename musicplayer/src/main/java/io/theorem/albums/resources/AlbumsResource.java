@@ -81,10 +81,26 @@ public class AlbumsResource {
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Path("{albumId}/songs")
-	public List<Song> findAllSongs() {
-		return songservice.findAllSongs();
+	public List<Song> findAllSongs(@PathParam("albumId") String albumId) {
+		return songservice.findAllSongs(albumId);
 	}
 
+	@PUT
+	@Produces(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Path("{albumId}/songs/{songId}")
+	public Song updateSong(Song song) {
+		return songservice.updateSong(song);
+	}
+	
+
+	@POST
+	@Produces(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Path("{albumId}/songs")
+	public Song createSong(Song song, @PathParam("albumId") String albumId) {
+		return songservice.createSong(song);
+	}
 	
 }
 

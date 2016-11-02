@@ -5,7 +5,6 @@ import java.util.List;
 import com.google.inject.Inject;
 
 import io.theorem.albums.entity.Album;
-import io.theorem.albums.entity.Song;
 import io.theorem.albums.exception.AlbumAlreadyExists;
 import io.theorem.albums.exception.AlbumNotFoundException;
 import io.theorem.albums.repository.AlbumRepository;
@@ -26,9 +25,6 @@ public class AlbumServiceImp implements AlbumService {
 		if (existing == null) {
 			throw new AlbumNotFoundException("Album with id:" + albumId + " not found");
 		}
-		List<Song> songs = album.getSongs();
-		songservice.updateSong(songs);
-		
 		return albumRepository.update(albumId, album);
 	}
 
@@ -37,8 +33,6 @@ public class AlbumServiceImp implements AlbumService {
 		if (album == null) {
 			throw new AlbumNotFoundException("Album with id:" + albumId + " not found");
 		}
-		List<Song> songs = album.getSongs();
-		songservice.delete(songs);
 		albumRepository.delete(album);
 	}
 
@@ -48,8 +42,6 @@ public class AlbumServiceImp implements AlbumService {
 		if (existing != null) {
 			throw new AlbumAlreadyExists("Album already exists: " + album.getImdbId());
 		}
-		List<Song> songs = album.getSongs();
-		songservice.createSong(songs);
 		return albumRepository.createAlbum(album);
 	}
 

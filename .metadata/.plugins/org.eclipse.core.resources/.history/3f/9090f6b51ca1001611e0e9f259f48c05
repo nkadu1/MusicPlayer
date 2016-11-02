@@ -1,0 +1,19 @@
+package io.theorem.albums.service;
+
+import java.util.List;
+
+import io.theorem.albums.entity.Song;
+
+public interface SongService {
+
+	Song findAllSongs();
+
+	Song  updateSong(List<Song> songs);
+
+	void delete(Song song);
+	Song  createSong(List<Song> songs);
+	Song findSongById(String songId);
+	
+	
+	
+}

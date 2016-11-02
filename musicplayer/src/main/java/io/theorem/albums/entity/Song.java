@@ -3,17 +3,20 @@ package io.theorem.albums.entity;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 
 @Entity
 @Table
 @NamedQueries({ 
-	@NamedQuery(name = "Song.findAll", query = "SELECT e FROM Album e")
+	@NamedQuery(name = "Song.getSongs", query = "SELECT e FROM Song e where e.album =:album")
 })
 public class Song {
 	@Id
@@ -22,6 +25,18 @@ public class Song {
 	private String songId;
 	private String songName;
 	private String lengthOfTime;
+
+	@LazyCollection(LazyCollectionOption.FALSE)
+	@ManyToOne
+	private Album album;
+	
+	public Album getAlbum() {
+		return album;
+	}
+
+	public void setAlbum(Album album) {
+		this.album = album;
+	}
 
 	public String getLengthOfTime() {
 		return lengthOfTime;

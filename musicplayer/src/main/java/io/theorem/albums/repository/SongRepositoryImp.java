@@ -6,40 +6,50 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
+import io.theorem.albums.entity.Album;
 import io.theorem.albums.entity.Song;
 
 public class SongRepositoryImp implements SongRepository {
 	@PersistenceContext
 	private EntityManager em;
 
-	public List<Song> findAllSongs() {
-		TypedQuery<Song> query = em.createNamedQuery("Song.findAll", Song.class);
-		return query.getResultList();
+	public List<Song> findAllSongs(Album album) {
+
+		TypedQuery<Song> query = em.createNamedQuery("Song.getSongs", Song.class);
+		query.setParameter("album", album);
+		List<Song> songs = query.getResultList();
+		if (songs != null)
+			return songs;
+		else
+			return null;
 	}
 
-	public List<Song> updateSong(List<Song> song) {
-
-		for (Song songs : song) {
-			em.merge(songs);
-		}
+	public Song updateSong(Song song) {
+		
+		em.merge(song);
 		return song;
 	}
 
-	public void delete(List<Song> song) {
-		for (Song songs : song) {
-			em.remove(songs);
-		}
+	public void delete(Song song) {
+		em.remove(song);
+
 	}
 
-	public List<Song> createSong(List<Song> song) {
-		for (Song songs : song) {
-			em.persist(songs);
-		}
+	public Song createSong(Song song) {
+		em.persist(song);
 		return song;
 	}
 
 	public Song findSongById(String songId) {
 		Song song = em.find(Song.class, songId);
+		if (song != null)
+			return song;
+		else
+			return null;
+	}
+
+	public Song findSongByAlbumId(String albumId) {
+		Song song = em.find(Song.class, albumId);
 		if (song != null)
 			return song;
 		else

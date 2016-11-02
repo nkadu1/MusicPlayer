@@ -34,8 +34,6 @@ public class Album {
 	@OneToMany
 	private List<Song> songs;
 
-	@LazyCollection(LazyCollectionOption.FALSE)
-	@ManyToMany
 	private String artist;
 
 	public String getArtist() {
