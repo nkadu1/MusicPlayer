@@ -47,5 +47,15 @@ public class AlbumRepositoryImp implements AlbumRepository{
 		}
 		return null;
 	}
+
+	public Album findByImdbId(String imdbId) {
+		TypedQuery<Album> query = em.createNamedQuery("Movie.findByImdb", Album.class);
+		query.setParameter("pImdbId", imdbId);
+		List<Album> albums = query.getResultList();
+		if (albums != null && albums.size() == 1) {
+			return albums.get(0);
+		}
+		return null;
+	}
 	
 }

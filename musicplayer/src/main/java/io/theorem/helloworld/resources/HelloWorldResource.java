@@ -14,6 +14,7 @@ import com.google.inject.Inject;
 
 import io.theorem.albums.entity.Album;
 import io.theorem.albums.entity.Song;
+import io.theorem.albums.exception.AlbumNotFoundException;
 import io.theorem.albums.service.AlbumService;
 import io.theorem.albums.service.ArtistService;
 import io.theorem.albums.service.SongService;
@@ -61,7 +62,7 @@ public class HelloWorldResource {
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Path("{albumId}")
-	public Album update(@PathParam("albumId") String albumId){
+	public Album update(@PathParam("albumId") String albumId) throws AlbumNotFoundException{
 		Album al  = albumservice.findById(albumId);
 		return albumservice.update(albumId, al);
 	}

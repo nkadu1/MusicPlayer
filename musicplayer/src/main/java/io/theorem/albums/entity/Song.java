@@ -4,6 +4,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.LazyCollection;
@@ -12,8 +14,10 @@ import org.hibernate.annotations.LazyCollectionOption;
 
 @Entity
 @Table
+@NamedQueries({ 
+	@NamedQuery(name = "Song.findAll", query = "SELECT e FROM Album e")
+})
 public class Song {
-
 	@Id
 	@GenericGenerator(name = "customUUID", strategy = "uuid2")
 	@GeneratedValue(generator = "customUUID")

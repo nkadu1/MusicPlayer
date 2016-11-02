@@ -13,7 +13,8 @@ import javax.persistence.NamedQueries;
 @Table
 @NamedQueries({ 
 	@NamedQuery(name = "Album.findAll", query = "SELECT e FROM Album e"),
-	@NamedQuery(name = "Album.freeTextSearch", query = "SELECT e FROM Album e where concat(Genre,Type,Title) like :freeText")
+	@NamedQuery(name = "Album.freeTextSearch", query = "SELECT e FROM Album e where concat(Genre,Type,Title) like :freeText"),
+	@NamedQuery(name = "Album.findByImdb", query = "SELECT e FROM Movie e WHERE e.imdbID=:pImdbId")
 })
 public class Album {
 
@@ -23,9 +24,16 @@ public class Album {
 	private String albumId;
 	private String albumName;
 	private String artistId;
+	private String imdbId;
 	private List<Song> songs;
 	public String getAlbumId() {
 		return albumId;
+	}
+	public String getImdbId() {
+		return imdbId;
+	}
+	public void setImdbId(String imdbId) {
+		this.imdbId = imdbId;
 	}
 	public void setAlbumId(String albumId) {
 		this.albumId = albumId;

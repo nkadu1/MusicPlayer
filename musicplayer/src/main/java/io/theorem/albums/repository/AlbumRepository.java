@@ -15,6 +15,6 @@ public interface AlbumRepository {
 	Album createAlbum(Album mv);
 	Album findById(String albumId);
 	List<Album> freeTextSearch(String freeText);
-	
+	public Album findByImdbId(String imdbId) ;
 
 }

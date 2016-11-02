@@ -1,0 +1,62 @@
+package io.theorem.albums.repository;
+import java.util.List;
+
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
+
+import io.theorem.albums.entity.Album;
+
+
+public class AlbumRepositoryImp implements AlbumRepository{
+
+	@PersistenceContext
+	private EntityManager em;
+	
+	public List<Album> findAllAlbums() {
+		TypedQuery<Album> query = em.createNamedQuery("Album.findAll", Album.class);
+		return query.getResultList();
+	}
+
+	public Album update(String albumId, Album mv) {
+		return em.merge(mv);
+	}
+
+	public void delete(Album mv) {
+		em.remove(mv);
+	}
+
+	public Album createAlbum(Album mv) {
+		em.persist(mv);
+		 return mv;
+	}
+
+	public Album findById(String albumId) {
+		Album album  = em.find(Album.class, albumId);
+		if(album!=null)
+			return album;
+		else return null;
+	}
+
+	public List<Album> freeTextSearch(String freeText) {
+		TypedQuery<Album> query = em.createNamedQuery("Album.freeTextSearch", Album.class);
+		query.setParameter("freeText", "%"+ freeText + "%");
+		List<Album> movies =query.getResultList();
+		if ( movies.size() > 0) {
+			return movies;
+		}
+		return null;
+	}
+
+	public Album findByImdbId(String imdbId) {
+		TypedQuery<Movie> query = em.createNamedQuery("Movie.findByImdb", Movie.class);
+		query.setParameter("pImdbId", imdbID);
+		List<Movie> movies = query.getResultList();
+		if (movies != null && movies.size() == 1) {
+			return movies.get(0);
+		}
+		return null;
+		
+	}
+	
+}

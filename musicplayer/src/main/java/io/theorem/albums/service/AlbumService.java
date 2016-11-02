@@ -15,5 +15,4 @@ public interface AlbumService {
 	Album createAlbum(Album mv);
 	Album findById(String albumId);
 	List<Album> freeTextSearch(String freeText);
-	
 }
