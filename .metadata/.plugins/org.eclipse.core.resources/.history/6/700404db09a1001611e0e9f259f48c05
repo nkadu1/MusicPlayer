@@ -1,0 +1,46 @@
+package io.theorem.albums.repository;
+
+import java.util.List;
+
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
+
+import io.theorem.albums.entity.Song;
+
+
+public class SongRepositoryImp implements SongRepository{
+
+	@PersistenceContext
+	private EntityManager em;
+	
+	public List<Song> findAllSongs() {
+		 TypedQuery<Song> query = em.createNamedQuery("Song.findAll", Song.class);
+		return query.getResultList();
+	}
+
+	public Song updateSong(String songId, Song mv) {
+		return em.merge(mv);
+	}
+
+	public void delete(List<Song>  song) {
+		
+		for(Song songs: song){
+			em.remove(songs);
+		}
+		return cast;
+	}
+
+	public Song createSong(List<Song>  songs) {
+		em.persist(mv);
+		 return mv;
+	}
+
+	public Song findSongById(List<Song>  songs) {
+		Song  song  = em.find(Song.class, songId);
+		if(song!=null)
+			return song;
+		else return null;
+	}
+
+}

@@ -17,25 +17,19 @@ public class SongServiceImp implements SongService{
 		return songrepository.findAllSongs();
 	}
 
-	public Song updateSong(String songId, Song mv) {
-		return songrepository.updateSong(songId, mv);
+	public List<Song> updateSong(List<Song> songs) {
+		return songrepository.updateSong(songs);
 	}
 
-	public void delete(String songId) {
-		Song song  =songrepository.findSongById(songId);
-		songrepository.delete(song);
+	public void delete(List<Song> songs) {
+		songrepository.delete(songs);
 	}
 
-	public Song createSong(Song mv) {
-		return songrepository.createSong(mv);
+	public List<Song>  createSong(List<Song> songs) {
+		return songrepository.createSong(songs);
 	}
 
 	public Song findSongById(String songId) {
 		return songrepository.findSongById(songId);
 	}
-
-	
-
-
-
 }

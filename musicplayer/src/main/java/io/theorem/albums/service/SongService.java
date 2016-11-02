@@ -8,11 +8,11 @@ public interface SongService {
 
 	List<Song> findAllSongs();
 
-	Song updateSong(String songId,Song song);
+	List<Song>  updateSong(List<Song> songs);
 
-	void delete(String songId);
+	void delete(List<Song> songs);
 
-	Song createSong(Song mv);
+	List<Song>  createSong(List<Song> songs);
 	Song findSongById(String songId);
 	
 	

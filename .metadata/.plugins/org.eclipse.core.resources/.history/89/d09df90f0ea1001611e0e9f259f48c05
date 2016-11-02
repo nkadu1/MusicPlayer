@@ -1,0 +1,50 @@
+package io.theorem.albums;
+
+import java.util.Properties;
+
+import io.dropwizard.Application;
+import io.dropwizard.setup.Bootstrap;
+import io.dropwizard.setup.Environment;
+import io.theorem.helloworld.health.TemplateHealthCheck;
+import io.theorem.helloworld.resources.HelloWorldResource;
+
+public class MusicPlayerApplication extends Application<MusicPlayerConfiguration> {
+	public static void main(String[] args) throws Exception {
+		new MusicPlayerApplication().run(args);
+	}
+
+	@Override
+	public String getName() {
+		return "hello-world";
+	}
+
+	@Override
+	public void initialize(Bootstrap<MusicPlayerConfiguration> bootstrap) {
+//		MusicPlayerConfiguration configuration = StartHelper.createConfiguration(StartHelper.getConfigFilename());
+	        Properties jpaProperties = StartHelper.createPropertiesFromConfiguration(configuration);
+
+	        JpaPersistModule jpaPersistModule = new JpaPersistModule(StartHelper.JPA_UNIT);
+	        jpaPersistModule.properties(jpaProperties);
+
+	        guiceBundle = GuiceBundle.<ToDoConfiguration>newBuilder()
+	                .addModule(new ToDoGuiceModule())
+	                .addModule(jpaPersistModule).enableAutoConfig("org.oregami")
+	                .setConfigClass(ToDoConfiguration.class).build();
+
+	        bootstrap.addBundle(guiceBundle);
+
+	        initAuthKey();
+	}
+
+	@Override
+	public void run(MusicPlayerConfiguration configuration, Environment environment) {
+		final HelloWorldResource resource = new HelloWorldResource(configuration.getTemplate(),
+				configuration.getDefaultName());
+		final TemplateHealthCheck healthCheck = new TemplateHealthCheck(configuration.getTemplate());
+		environment.healthChecks().register("template", healthCheck);
+
+		environment.jersey().register(resource);
+
+	}
+
+}

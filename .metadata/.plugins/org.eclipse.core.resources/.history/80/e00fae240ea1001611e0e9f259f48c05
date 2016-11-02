@@ -1,0 +1,5 @@
+package io.theorem.albums.util;
+
+public class StartHelper {
+
+}

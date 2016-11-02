@@ -1,8 +1,9 @@
+
 package io.theorem.albums.api;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.google.common.base.MoreObjects;
 import org.hibernate.validator.constraints.Length;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
 public class Saying {
     private long id;
 

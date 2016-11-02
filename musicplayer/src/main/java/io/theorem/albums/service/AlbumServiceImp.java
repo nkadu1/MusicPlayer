@@ -5,48 +5,57 @@ import java.util.List;
 import com.google.inject.Inject;
 
 import io.theorem.albums.entity.Album;
+import io.theorem.albums.entity.Song;
 import io.theorem.albums.exception.AlbumAlreadyExists;
 import io.theorem.albums.exception.AlbumNotFoundException;
 import io.theorem.albums.repository.AlbumRepository;
 
-public class AlbumServiceImp implements AlbumService{
+public class AlbumServiceImp implements AlbumService {
 
 	@Inject
-	AlbumRepository  albumRepository;
+	private AlbumRepository albumRepository;
+	@Inject
+	private SongService songservice;
 
 	public List<Album> findAllAlbums() {
 		return albumRepository.findAllAlbums();
 	}
 
-	public Album update(String albumId, Album mv) throws AlbumNotFoundException{
+	public Album update(String albumId, Album album) throws AlbumNotFoundException {
 		Album existing = albumRepository.findById(albumId);
-		if(existing==null){
+		if (existing == null) {
 			throw new AlbumNotFoundException("Album with id:" + albumId + " not found");
 		}
-		return albumRepository.update(albumId, mv);
-	}
-
-	public void delete(String albumId) throws AlbumNotFoundException{
-		Album existing  =  albumRepository.findById(albumId);
-		if(existing==null){
-			throw new AlbumNotFoundException("Album with id:" + albumId + " not found");
-		}
-		albumRepository.delete(existing);
-	}
-
-	public Album createAlbum(Album mv) throws AlbumAlreadyExists{
+		List<Song> songs = album.getSongs();
+		songservice.updateSong(songs);
 		
-		Album existing = albumRepository.findByImdbId(mv.getImdbId());
+		return albumRepository.update(albumId, album);
+	}
+
+	public void delete(String albumId) throws AlbumNotFoundException {
+		Album album = albumRepository.findById(albumId);
+		if (album == null) {
+			throw new AlbumNotFoundException("Album with id:" + albumId + " not found");
+		}
+		List<Song> songs = album.getSongs();
+		songservice.delete(songs);
+		albumRepository.delete(album);
+	}
+
+	public Album createAlbum(Album album) throws AlbumAlreadyExists {
+
+		Album existing = albumRepository.findByImdbId(album.getImdbId());
 		if (existing != null) {
-			throw new AlbumAlreadyExists("Album already exists: " + mv.getImdbId());
+			throw new AlbumAlreadyExists("Album already exists: " + album.getImdbId());
 		}
-		return albumRepository.createAlbum(mv);
-		
+		List<Song> songs = album.getSongs();
+		songservice.createSong(songs);
+		return albumRepository.createAlbum(album);
 	}
 
-	public Album findById(String albumId) throws AlbumNotFoundException{
-		Album album  = albumRepository.findById(albumId);
-		if(album!=null)
+	public Album findById(String albumId) throws AlbumNotFoundException {
+		Album album = albumRepository.findById(albumId);
+		if (album != null)
 			return album;
 		else
 			throw new AlbumNotFoundException("Album with id:" + albumId + " not found");
@@ -55,5 +64,4 @@ public class AlbumServiceImp implements AlbumService{
 	public List<Album> freeTextSearch(String freeText) {
 		return albumRepository.freeTextSearch(freeText);
 	}
-
 }
