@@ -1,0 +1,23 @@
+package io.theorem.albums.entity;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.Table;
+
+import java.util.List;
+
+public class Album {
+
+	@Id
+	@GenericGenerator(name = "customUUID", strategy = "uuid2")
+	@GeneratedValue(generator = "customUUID")
+	private String albumId;
+	private String albumName;
+	private String artistId;
+	private List<Song> songs;
+	
+}

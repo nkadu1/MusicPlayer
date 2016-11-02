@@ -1,0 +1,8 @@
+package io.theorem.albums.entity;
+
+public class Album {
+
+	@GeneratedValue(generator = "customUUID")
+	private String albumId;
+	
+}

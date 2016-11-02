@@ -1,0 +1,19 @@
+package io.theorem.albums.service;
+
+import java.util.List;
+
+import io.theorem.albums.entity.Album;
+
+public interface AlbumService {
+
+	List<Album> findAllAlbums();
+
+	Album update(String albumId, Album mv);
+
+	void delete(String albumId);
+
+	Album createAlbum(Album mv);
+	Album findById(String albumId);
+	
+	
+}

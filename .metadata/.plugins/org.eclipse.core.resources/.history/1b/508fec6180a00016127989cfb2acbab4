@@ -1,0 +1,7 @@
+package io.theorem.albums.service;
+
+public interface SongService {
+
+
+	
+}

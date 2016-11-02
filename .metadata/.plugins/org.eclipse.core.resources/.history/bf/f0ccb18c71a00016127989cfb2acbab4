@@ -1,0 +1,13 @@
+package io.theorem.albums.exception;
+
+
+public class ArtistNotFoundException2 extends RuntimeException{
+	
+	private static final long serialVersionUID = 1L;
+	public ArtistNotFoundException2(String message) {
+		super(message);
+	}
+	public ArtistNotFoundException2(String message, Throwable cause) {
+		super(message,cause);
+	}
+}

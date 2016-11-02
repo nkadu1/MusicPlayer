@@ -1,0 +1,8 @@
+package io.theorem.albums.repository;
+import io.theorem.albums.entity.Song;
+
+
+public interface SongRepository {
+	Song createRating(Song song);
+	
+}

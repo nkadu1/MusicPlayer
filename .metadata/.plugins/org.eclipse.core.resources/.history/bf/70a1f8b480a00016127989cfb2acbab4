@@ -1,0 +1,14 @@
+package io.theorem.albums.service;
+
+import java.util.List;
+
+import io.theorem.albums.entity.Album;
+import io.theorem.albums.entity.Song;
+
+public class SongServiceImp implements SongService{
+
+	
+
+
+
+}

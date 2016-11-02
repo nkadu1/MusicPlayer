@@ -1,0 +1,10 @@
+package io.theorem.albums.repository;
+import java.util.List;
+
+
+public interface SongRepository {
+	Song createRating(Rating rating);
+	List<Rating> getComments(Movie movie);
+	double updateAvgRating(Rating rating);
+
+}

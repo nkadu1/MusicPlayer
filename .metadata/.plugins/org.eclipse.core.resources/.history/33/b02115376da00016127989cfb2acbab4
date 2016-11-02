@@ -1,0 +1,44 @@
+package io.theorem.albums.repository;
+import java.util.List;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
+
+import io.theorem.albums.entity.Album;
+
+
+public class AlbumRepositoryImp implements AlbumRepository{
+
+	@PersistenceContext
+	private EntityManager em;
+	
+	
+	public List<Album> findAllAlbums() {
+		TypedQuery<Album> query = em.createNamedQuery("Album.findAll", Album.class);
+		return query.getResultList();
+	}
+
+	public Album update(String albumId, Album mv) {
+		return em.merge(mv);
+	}
+
+	public void delete(Album mv) {
+		em.remove(mv);
+	}
+
+	public Album createAlbum(Album mv) {
+		em.persist(mv);
+		 return mv;
+	}
+
+	public Album findById(String albumId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public List<Album> freeTextSearch(String freeText) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+}

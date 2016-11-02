@@ -1,0 +1,12 @@
+package io.theorem.albums.exception;
+
+public class SongAlreadyExistsException extends RuntimeException{
+
+	private static final long serialVersionUID = 1L;
+	public SongAlreadyExistsException2(String message) {
+		super(message);
+	}
+	public ArtistAlreadyExistsException2(String message, Throwable cause) {
+		super(message,cause);
+	}
+}

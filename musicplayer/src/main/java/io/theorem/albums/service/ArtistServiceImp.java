@@ -1,0 +1,44 @@
+package io.theorem.albums.service;
+
+public class ArtistServiceImp implements ArtistService{
+
+//	@Autowired
+//	RatingRepository ratingrepository;
+//	@Autowired
+//	MovieRepository movierepository;
+//	@Autowired
+//	UserRepository userrepository;
+//
+//	@Autowired
+//	MovieService movieservice;
+//	
+//	@Override
+//	@Transactional
+//	public Rating createRating(Rating rating) {
+//		Movie movie =  movierepository.findone(rating.getMovie().getMovieId());
+//		User user  =  userrepository.findById(rating.getUser().getUserId());
+//		rating.setMovie(movie);
+//		rating.setUser(user);
+//		Rating rat  = ratingrepository.createRating(rating);
+//		updateAvgRating(rat);
+//		return rat;
+//	}
+//	
+//	@Override
+//	public List<Rating> getComments(Movie movie) {
+//		
+//		return ratingrepository.getComments(movie);
+//	}
+//
+//	@Override
+//	public void updateAvgRating(Rating rating) {
+//		
+//		double avgRating = ratingrepository.updateAvgRating(rating);
+//		rating.getMovie().setAvgRating(avgRating);
+//		movieservice.updateAvgRating(rating.getMovie().getMovieId(), rating.getMovie());
+//	}
+
+	
+	
+}
+

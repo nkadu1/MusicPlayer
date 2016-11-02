@@ -1,0 +1,8 @@
+package io.theorem.helloworld.resources;
+
+public class Snippet {
+	public static void main(String[] args) {
+		com.example.helloworld.resources
+	}
+}
+

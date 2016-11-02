@@ -1,0 +1,45 @@
+package io.theorem.helloworld.resources;
+
+import java.util.List;
+import java.util.concurrent.atomic.AtomicLong;
+
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
+
+import io.theorem.albums.entity.Album;
+
+@Path("/hello-world")
+@Produces(MediaType.APPLICATION_JSON)
+@Consumes(MediaType.APPLICATION_JSON)
+public class HelloWorldResource {
+	private final String template;
+	private final String defaultName;
+	private final AtomicLong counter;
+
+	public HelloWorldResource(String template, String defaultName) {
+		System.out.println("template here " + template);
+		System.out.println("default name " + defaultName);
+		this.template = template;
+		this.defaultName = defaultName;
+		this.counter = new AtomicLong();
+	}
+
+	public Album Create() {
+		return null;
+	}
+
+	public List<Album> findAllAlbums() {
+		return null;
+	}
+	
+	public Album update(){
+		return null;
+	}
+	
+	public void delete(){
+		
+	}
+
+	
+}

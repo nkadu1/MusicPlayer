@@ -1,0 +1,19 @@
+package io.theorem.albums.repository
+
+import java.util.List;
+
+public interface AlbumRepository {
+
+//	public List<Movie> findAll();
+//	public Movie update(String movieId, Movie mv);
+//	public void delete(Movie mv);
+//	public Movie  create(Movie mv);
+//	public Movie findByImdb(String imdbID);
+//	public Movie findone(String movieId);
+//	public List<Movie> topRated(String type);
+//	public List<Movie> sortByImdbRatings();
+//	public List<Movie> sortByImdbVotes();
+//	public List<Movie> sortByYear();
+//	public Movie updateAvgRating(String movieId,Movie movie);
+//	public List<Movie> freeTextSearch(String freeText);
+}

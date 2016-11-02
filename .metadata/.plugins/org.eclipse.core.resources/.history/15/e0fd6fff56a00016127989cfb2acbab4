@@ -1,0 +1,6 @@
+package io.theorem.albums.entity;
+
+public class Song {
+	private String songId;
+	private String songName;
+}

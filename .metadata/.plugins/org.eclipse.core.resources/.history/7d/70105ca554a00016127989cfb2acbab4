@@ -1,0 +1,10 @@
+package io.theorem.albums.entity;
+//import javax.persistence.GeneratedValue;
+
+
+public class Album {
+
+	//@GeneratedValue(generator = "customUUID")
+	private String albumId;
+	
+}

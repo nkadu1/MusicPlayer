@@ -1,0 +1,25 @@
+package io.theorem.helloworld.resources;
+
+import java.util.List;
+
+import io.theorem.albums.entity.Song;
+
+public class SongResource {
+
+	public Song findById() {
+		return null;
+	}
+
+	public void delete() {
+
+	}
+
+	public List<Song> findAllSong() {
+		return null;
+	}
+	
+	public Song update(){
+		
+	}
+
+}
