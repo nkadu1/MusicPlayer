@@ -22,7 +22,6 @@ import io.theorem.albums.service.AlbumService;
 import io.theorem.albums.service.SongService;
 
 @Path("/albums")
-
 public class AlbumsResource {
 	
 	private final String template;
@@ -58,12 +57,11 @@ public class AlbumsResource {
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Path("{albumId}")
 	public Album update(@PathParam("albumId") String albumId) throws AlbumNotFoundException{
-		Album al  = albumservice.findById(albumId);
-		return albumservice.update(albumId, al);
+		return albumservice.update(albumId);
 	}
 	
 	@DELETE
-	@Consumes(MediaType.APPLICATION_JSON)
+	@Path("{albumId}")
 	public void delete(@PathParam("albumId") String albumId){
 		albumservice.delete(albumId);
 	}
@@ -71,7 +69,7 @@ public class AlbumsResource {
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
-	@Path("{albumId}/songs/{songId}")
+	@Path("{albumId}/{songId}")
 	public Song findSongById(@PathParam("songId") String songId) {
 		Song song  =  songservice.findSongById(songId);
 		return song;
@@ -79,8 +77,7 @@ public class AlbumsResource {
 
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
-	@Consumes(MediaType.APPLICATION_JSON)
-	@Path("{albumId}/songs")
+	@Path("{albumId}")
 	public List<Song> findAllSongs(@PathParam("albumId") String albumId) {
 		return songservice.findAllSongs(albumId);
 	}
@@ -88,7 +85,7 @@ public class AlbumsResource {
 	@PUT
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
-	@Path("{albumId}/songs/{songId}")
+	@Path("{albumId}/{songId}")
 	public Song updateSong(Song song) {
 		return songservice.updateSong(song);
 	}
@@ -97,11 +94,16 @@ public class AlbumsResource {
 	@POST
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
-	@Path("{albumId}/songs")
+	@Path("{albumId}")
 	public Song createSong(Song song, @PathParam("albumId") String albumId) {
 		return songservice.createSong(song);
 	}
 	
+	@DELETE
+	@Path("{albumId}/{songId}")
+	public void delete(Song song){
+		songservice.delete(song);
+	}
 }
 
 

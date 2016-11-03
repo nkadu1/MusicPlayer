@@ -1,20 +1,14 @@
 package io.theorem.albums.entity;
 
-import java.util.List;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
-import org.hibernate.annotations.LazyCollection;
-import org.hibernate.annotations.LazyCollectionOption;
 
 @Entity
 @Table
@@ -30,9 +24,7 @@ public class Album {
 	@Column(unique = true)
 	private String imdbId;
 
-	@LazyCollection(LazyCollectionOption.FALSE)
-	@OneToMany
-	private List<Song> songs;
+	
 
 	private String artist;
 
@@ -71,12 +63,6 @@ public class Album {
 		this.albumName = albumName;
 	}
 
-	public List<Song> getSongs() {
-		return songs;
-	}
 
-	public void setSongs(List<Song> songs) {
-		this.songs = songs;
-	}
 
 }

@@ -20,9 +20,9 @@ public class AlbumServiceImp implements AlbumService {
 		return albumRepository.findAllAlbums();
 	}
 
-	public Album update(String albumId, Album album) throws AlbumNotFoundException {
-		Album existing = albumRepository.findById(albumId);
-		if (existing == null) {
+	public Album update(String albumId) throws AlbumNotFoundException {
+		Album album = albumRepository.findById(albumId);
+		if (album == null) {
 			throw new AlbumNotFoundException("Album with id:" + albumId + " not found");
 		}
 		return albumRepository.update(albumId, album);

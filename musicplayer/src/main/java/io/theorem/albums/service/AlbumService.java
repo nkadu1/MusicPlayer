@@ -8,7 +8,7 @@ public interface AlbumService {
 
 	List<Album> findAllAlbums();
 
-	Album update(String albumId, Album mv);
+	Album update(String albumId);
 
 	void delete(String albumId);
 

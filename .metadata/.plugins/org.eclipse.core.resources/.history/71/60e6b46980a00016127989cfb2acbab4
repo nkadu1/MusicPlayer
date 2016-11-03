@@ -1,3 +1,0 @@
-package io.theorem.albums.service;
-
-public class SongServiceImp implements SongService{}

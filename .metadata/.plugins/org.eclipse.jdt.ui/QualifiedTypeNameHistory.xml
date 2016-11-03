@@ -1,2 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<qualifiedTypeNameHistroy/>
+<qualifiedTypeNameHistroy>
+<fullyQualifiedTypeName name="io.theorem.albums.service.SongService"/>
+<fullyQualifiedTypeName name="java.util.Properties"/>
+<fullyQualifiedTypeName name="io.theorem.albums.MusicPlayerConfiguration"/>
+<fullyQualifiedTypeName name="io.theorem.albums.ToDoGuiceModule"/>
+<fullyQualifiedTypeName name="com.google.inject.persist.jpa.JpaPersistModule"/>
+<fullyQualifiedTypeName name="io.theorem.albums.util.StartHelper"/>
+<fullyQualifiedTypeName name="io.theorem.albums.health.TemplateHealthCheck"/>
+<fullyQualifiedTypeName name="io.theorem.albums.resources.AlbumsResource"/>
+<fullyQualifiedTypeName name="org.hibernate.annotations.LazyCollection"/>
+<fullyQualifiedTypeName name="javax.persistence.ManyToOne"/>
+<fullyQualifiedTypeName name="org.hibernate.annotations.LazyCollectionOption"/>
+<fullyQualifiedTypeName name="io.theorem.albums.repository.AlbumRepository"/>
+</qualifiedTypeNameHistroy>
