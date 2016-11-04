@@ -94,14 +94,19 @@ public class AlbumsResource {
 	@POST
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
-	@Path("{albumId}/songs")
+	@Path("{albumId}")
 	public Song createSong(Song song, @PathParam("albumId") String albumId) {
 		return songservice.createSong(song);
 	}
 	
 	@DELETE
-	@Path("{albumId}/songs/{songId}")
+	@Path("{albumId}/{songId}")
 	public void delete(Song song){
 		songservice.delete(song);
 	}
 }
+
+
+
+
+

@@ -100,8 +100,13 @@ public class AlbumsResource {
 	}
 	
 	@DELETE
-	@Path("{albumId}/songs/{songId}")
+	@Path("{albumId}/{songId}")
 	public void delete(Song song){
 		songservice.delete(song);
 	}
 }
+
+
+
+
+
